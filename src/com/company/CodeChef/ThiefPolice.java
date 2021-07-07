@@ -1,15 +1,15 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+import com.company.Main.Fastreader;
 
+public class ThiefPolice {
 
-    public static class Fastreader {
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -61,41 +61,26 @@ public class Main {
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
+        while(t-- > 0) {
+        	int n = fs.nextInt();
+        	int m = fs.nextInt();
+        	int x = fs.nextInt();
+        	int y = fs.nextInt();
+        	int a = fs.nextInt();
+        	int b = fs.nextInt();
+        	
+        	int[][] grid = new int[n][m];
+        	grid[x][y] = 0;
+        	grid[a][b] = 1;
+        	boolean step = false;
+        	boolean thief;
+        	boolean police;
+        	while(x<n && y < m && a < n && b < m) {
+        		step = Math.min(a, b) == a? false:true; //false is down & true is right
+        		if(!step) {x++;} else if(step) {y++;}
 
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+        	}
         }
     }
+
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

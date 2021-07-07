@@ -1,11 +1,11 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class InconstantOrdering {
+public class MatrixXOR {
 	
 	static class FastReader {
         BufferedReader br;
@@ -50,81 +50,50 @@ public class InconstantOrdering {
             return str;
         }
     }
+	
+	//So here the question is not about the logic but the time limit
+	//for 10^7 operations it takes almost 1 sec and we need to solve almost 10^12 operations
+	//hence we need to find a logic on how to solve min to min operations to solve the problem
 
 	public static void main(String[] args) {
 		FastReader fs = new FastReader();
 		int t = fs.nextInt();
-		for(int x = 1; x <= t; x++) {
+		while(t-- > 0) {
 			int n = fs.nextInt();
-			int[] l = new int[n];
-			for(int z = 0; z < n; z++) {
-				l[z] = fs.nextInt();
-			}
+			int m = fs.nextInt();
+			int k = fs.nextInt();
 			
-			int size = 1;
-			for(int y = 0; y < n; y++) {
-				size = size + l[y];
-			}
-			
-			System.out.println(size);
-			
-			char[] str = new char[size];
-			str[0] = 'A';
-			char ascii = 65;
-			for(int i = 1, j=0; i < size && j < n-1;j++) {
-				if(l[j] < l[j+1] && j%2 == 0) {
-					int store = l[j];
-					for(int m = l[j]; m >1;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
+			int xor = 0;
+			if(n%2 == 0) {
+				for(int i = 1; i <= n; i++) {
+					if(i%2 != 0) {
+						xor = xor ^ (i + 1 + k);
 					}
-					ascii+=((l[j+1]-store) + 1);
-					System.out.println(ascii);
-					str[i] = ascii;
-					System.out.println("inc");
+					else if(i%2 == 0) {
+						xor = xor ^ (i + m + k);
+					}
 				}
-				else if(l[j] >= l[j+1] && j%2 != 0) {
-					for(int r = l[j]; r >0;r--) {
-						//even decreasing
-						ascii-=1;
-						str[i] = ascii;
-						i++;
+			}
+			else if(n%2 != 0) {
+				for(int i = 1; i <= n - 1; i++) {
+					if(i%2 != 0) {
+						xor = xor ^ (i + 1 + k);
 					}
-					System.out.println("dec");
+					else if(i%2 == 0) {
+						xor = xor ^ (i + m + k);
+					}
+					
 				}
-				else if(j%2 == 0) {
-					for(int m = l[j]; m >0;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
-					}
-					System.out.println("inc");
+				
+				for(int j = 1; j <= m; j++) {
+					xor = xor ^ (n + j + k);
 				}
 			}
 			
+			System.out.println(xor);
 			
-			
-			String string = new String(str);
-			
-			System.out.println("Case #" + x + ": " + string);
 		}
+
 	}
+
 }
-
-//char asii = 65;
-//for(char i = 0; i < 2; i++) {
-//	System.out.println(asii++);
-//}
-
-
-//3
-//2
-//2 3
-//2
-//5 1
-//1
-//2
-

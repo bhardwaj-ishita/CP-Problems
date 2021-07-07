@@ -1,15 +1,13 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class HiringTest {
 
-
-    public static class Fastreader {
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -61,41 +59,57 @@ public class Main {
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
-
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+        while(t-- > 0) {
+        	int n  = fs.nextInt();
+        	int m  = fs.nextInt();
+        	int x  = fs.nextInt();
+        	int y  = fs.nextInt();
+        	String[] s = new String[n];
+        	for(int i = 0; i < n; i++) {
+        		s[i] = fs.nextLine();
+        	}
+        	
+    		for(int q = 0; q < n; q++) {
+    			int countF = 0;
+            	int countP = 0;
+            	char[] c = s[q].toCharArray();
+    			for(int r = 0; r < m; r++) {
+        			if(c[r] == 'F')
+        				countF++;
+        			else if(c[r] == 'P')
+        				countP++;
+        		}
+    			
+        		
+        		if(countF >= x)
+        			System.out.print(1);
+        		else if(countF == (x-1) && countP >= y)
+        			System.out.print(1);
+        		else 
+        			System.out.print(0);
+    		}
+        	
+			System.out.println();
+        	
         }
     }
+
 }
 
 /*
-4
-8 5
-1 2
-4 4
-3 9
-
- */
+3
+4 5
+3 2
+FUFFP
+PFPFU
+UPFFU
+PPPFP
+3 4
+1 3
+PUPP
+UUUU
+UFUU
+1 3
+2 2
+PPP
+*/

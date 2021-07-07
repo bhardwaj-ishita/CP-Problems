@@ -1,15 +1,14 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
-
-
-    public static class Fastreader {
+public class MakeSumEven {
+	
+	
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -40,7 +39,6 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -57,45 +55,53 @@ public class Main {
             return str;
         }
     }
-
+	
     public static void main(String[] args) {
-        Fastreader fs = new Fastreader();
-        int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
+    	Fastreader fs = new Fastreader();
+        int testCases = fs.nextInt();
+        for (int i = 0; i < testCases; i++) {
+            int n = fs.nextInt();
+            int[] a = new int[n];
+            for (int j = 0; j < n; j++) {
+                a[j] = fs.nextInt();
+            }
 
-            if(a == b) {
-                System.out.println(0 + " " + 0);
+            //int p = max(0, Math.ceil(a[j]) - 1);
+
+            int sum = 0;
+            for(int z = 0; z < n; z++) {
+                sum = sum + a[z];
             }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
+
+
+            if (sum % 2 != 0) {
+                int count1 = 0;
+                int count2 = 0;
+                int j = 0;
+                while (j < n) {
+                    if (a[j] % 2 == 0) {
+                        count1 = j;
+                    }
+                    if(a[j] == 2) {
+                        count2++;
+                        break;
+                    }
+                    j++;
+                }
+
+                if (count1 == 0) {
+                    System.out.println(-1);
+                }
+                else if(count2 != 0) {
+                    System.out.println(1);
                 }
                 else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
+                    System.out.println(-1);
                 }
-                System.out.println(gcd + " " + i);
-
+            }
+            else {
+                System.out.println(0);
             }
         }
     }
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

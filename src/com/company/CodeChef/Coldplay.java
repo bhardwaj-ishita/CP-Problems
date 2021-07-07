@@ -1,15 +1,13 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Coldplay {
 
-
-    public static class Fastreader {
+    static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -40,7 +38,7 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -61,41 +59,12 @@ public class Main {
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
+        while(t-- > 0) {
+            int m = fs.nextInt();
+            int s = fs.nextInt();
 
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+            int ans = Math.floorDiv(m,s);
+            System.out.println(ans);
         }
     }
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

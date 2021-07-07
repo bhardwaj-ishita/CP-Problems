@@ -1,15 +1,13 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
-
-
-    public static class Fastreader {
+public class ModularEquation {
+	
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -40,7 +38,7 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -57,45 +55,46 @@ public class Main {
             return str;
         }
     }
+    
+    public static int addIt(int num) {
+    	if(num == 0)
+        	return 0;
+        if(num == 1)
+            return 1;
+        return num + addIt(num-1);
+    }
 
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
+        while(t-- > 0) {
+            int n = fs.nextInt();
+            int m = fs.nextInt();
+            
+            int j = n;
+            int count = 0;
+            while(j > 1) {
+                if(m%j == 0)
+                    count++;
+                j--;
+            }
 
-            if(a == b) {
-                System.out.println(0 + " " + 0);
+            if(count == 0)
+            	System.out.println(n-1);
+            else if (count != 0) {
+            	int ans = addIt(count - 1);
+                ans = ans + (n-1);
+                System.out.println(ans);
             }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+            
         }
     }
+
 }
 
 /*
-4
-8 5
-1 2
-4 4
-3 9
-
+ * 3
+3 5
+3 6
+3 10
  */

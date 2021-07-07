@@ -1,15 +1,14 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
 
-
-    public static class Fastreader {
+public class Sum2050 {
+	
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -57,45 +56,56 @@ public class Main {
             return str;
         }
     }
+	
+	public static long countDigit(long n)
+    {
+        if (n == 0)
+            return 0;
+        return 1 + countDigit(n / 10);
+    }
 
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
+        while(t-- > 0){
+        	long n = fs.nextLong();
+        	
+        	long digits = countDigit(n);
+        	
+        	long k = digits - 4;
+        	
+        	long diff = n;
+        	int count = 0;
+        	long store = 0;
+        	
+        	if(digits < 4 && n%2050 != 0) {
+        		System.out.println(-1);
+        	}
+        	else if(digits >= 4 && n%2050 == 0) {
+        		while(k >= 0) {
+        			store = diff;
+            		diff = (long) (store - (2050*(Math.pow(10, k))));
+            		count++;
+            		if(diff < 0) {
+            			diff = store;
+            			k--;
+            			count--;
+            		}
+            		else if(diff == 0) {
+            			break;
+            		}
+            	}
+            	
+            	if(diff == 0) {
+            		System.out.println(count);
+            	}
+            	else
+            		System.out.println(-1);
+        	}
+        	else
+        		System.out.println(-1);
 
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
         }
     }
+//kjhk
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

@@ -1,12 +1,12 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class InconstantOrdering {
-	
+public class BodyBuilder {
+
 	static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -54,77 +54,47 @@ public class InconstantOrdering {
 	public static void main(String[] args) {
 		FastReader fs = new FastReader();
 		int t = fs.nextInt();
-		for(int x = 1; x <= t; x++) {
+		while(t-- > 0) {
 			int n = fs.nextInt();
-			int[] l = new int[n];
-			for(int z = 0; z < n; z++) {
-				l[z] = fs.nextInt();
+			int r = fs.nextInt();
+			long[] a = new long[n];
+			for(int i = 0; i < n; i++) {
+				a[i] = fs.nextLong();
 			}
-			
-			int size = 1;
-			for(int y = 0; y < n; y++) {
-				size = size + l[y];
-			}
-			
-			System.out.println(size);
-			
-			char[] str = new char[size];
-			str[0] = 'A';
-			char ascii = 65;
-			for(int i = 1, j=0; i < size && j < n-1;j++) {
-				if(l[j] < l[j+1] && j%2 == 0) {
-					int store = l[j];
-					for(int m = l[j]; m >1;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
-					}
-					ascii+=((l[j+1]-store) + 1);
-					System.out.println(ascii);
-					str[i] = ascii;
-					System.out.println("inc");
-				}
-				else if(l[j] >= l[j+1] && j%2 != 0) {
-					for(int r = l[j]; r >0;r--) {
-						//even decreasing
-						ascii-=1;
-						str[i] = ascii;
-						i++;
-					}
-					System.out.println("dec");
-				}
-				else if(j%2 == 0) {
-					for(int m = l[j]; m >0;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
-					}
-					System.out.println("inc");
-				}
+			int[] b = new int[n];
+			for(int j = 0; j < n; j++) {
+				b[j] = fs.nextInt();
 			}
 			
 			
+			long max = 0;
+			long x = 0;
+			for(int z = 0; z < n - 1; z++) {
+				x = x + b[z];
+				max = Math.max(x,max);
+				long diff = a[z + 1] - a[z];
+				x = x - (diff*r);
+				if(x < 0) x = 0;
+			}
 			
-			String string = new String(str);
+			x = x + b[n - 1];
+			max = Math.max(x, max);
 			
-			System.out.println("Case #" + x + ": " + string);
+			System.out.println(max);
+			
 		}
+
 	}
+
 }
 
-//char asii = 65;
-//for(char i = 0; i < 2; i++) {
-//	System.out.println(asii++);
-//}
-
-
 //3
-//2
-//2 3
-//2
-//5 1
-//1
-//2
-
+//1 2
+//10
+//10
+//2 2
+//10 11
+//10 10
+//3 1
+//1 2 3
+//1 2 3

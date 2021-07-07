@@ -1,15 +1,12 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
-
-
-    public static class Fastreader {
+public class Pawri {
+    static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -40,62 +37,50 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
         float nextFloat() {
             return Float.parseFloat(next());
         }
 
         String nextLine()
         {
-            String str = "";
+            String st = "";
             try {
-                str = br.readLine();
+                st = br.readLine();
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
-            return str;
+            return st;
         }
     }
 
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
-
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
+        for(int i = 0; i < t; i++) {
+            String s = fs.nextLine();
+            char[] c = s.toCharArray();
+            if(c.length < 5) {
+                String ans = new String(c);
+                System.out.println(ans);
+            } else {
+                for(int j = 0; j < c.length - 4; j++) {
+                    if(c[j] == 'p' && c[j+1] == 'a' && c[j+2] == 'r' && c[j+3] == 't' && c[j+4] == 'y') {
+                        c[j+2] = 'w';
+                        c[j+3] = 'r';
+                        c[j+4] = 'i';
                     }
                 }
-                System.out.println(gcd + " " + i);
-
+                String ans = new String(c);
+                System.out.println(ans);
             }
+
         }
     }
 }
 
 /*
-4
-8 5
-1 2
-4 4
-3 9
-
+part
+partypartiparty
+yemaihuyemericarhaiauryahapartyhorahihai
  */

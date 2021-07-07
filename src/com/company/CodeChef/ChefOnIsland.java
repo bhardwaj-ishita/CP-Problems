@@ -1,15 +1,13 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class ChefOnIsland {
 
-
-    public static class Fastreader {
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -61,41 +59,32 @@ public class Main {
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
-
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+        while(t-- > 0) {
+        	int x = fs.nextInt();
+        	int y = fs.nextInt();
+        	int xr = fs.nextInt();
+        	int yr = fs.nextInt();
+        	int d = fs.nextInt();
+        	
+        	if(y >= yr && x >= xr) {
+        		int food = Math.floorDiv(x, xr);
+            	int water= Math.floorDiv(y, yr);
+            	
+            	boolean ans = (Math.min(food, water) >= d) ? true:false;
+            	
+            	if(ans) System.out.println("Yes");
+            	else if(!ans) System.out.println("No");
+        	}
+        	else
+        		System.out.println("No");
+        	
+        	
         }
     }
+
 }
 
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */
+//3
+//4 2 1 1 1
+//4 2 1 3 1
+//4 2 4 2 2

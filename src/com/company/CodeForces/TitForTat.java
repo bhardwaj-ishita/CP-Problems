@@ -1,15 +1,13 @@
-package com.company;
+package com.company.CodeForces;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class TitForTat {
 
-
-    public static class Fastreader {
+	static class Fastreader {
         BufferedReader br;
         StringTokenizer st;
 
@@ -61,41 +59,26 @@ public class Main {
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
         int t = fs.nextInt();
-        while (t-- > 0) {
-            long a = fs.nextLong();
-            long b = fs.nextLong();
-
-            if(a == b) {
-                System.out.println(0 + " " + 0);
-            }
-            else if(Math.abs(b-a) == 1) {
-                System.out.println(1 + " " + 0);
-            }
-            else if(a != b) {
-                long gcd = a > b ? a - b : b - a;
-                long i = 0;
-                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
-                    i = (a < b ? a : b);
-                    gcd = a > b ? a : b;
-                }
-                else {
-                    while(a % gcd != 0){
-                        a += 1;
-                        i++;
-                    }
-                }
-                System.out.println(gcd + " " + i);
-
-            }
+        while(t-- > 0) {
+        	int n = fs.nextInt();
+        	int k = fs.nextInt();
+        	int[] arr = new int[n];
+        	for(int i = 0; i < n; i++) {
+        		arr[i] = fs.nextInt();
+        	}
+        	
+        	for(int j = 0; j < n; j++) {
+        		while(arr[j] != 0 && k != 0) {
+        			arr[j] -= 1;
+        			arr[n-1] += 1;
+        			k--;
+        		}
+        	}
+        	
+        	for(int x: arr) System.out.print(x + " ");
+        	System.out.println();
+        	
         }
     }
+
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

@@ -1,11 +1,13 @@
-package com.company;
+package com.company.CodeChef;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InconstantOrdering {
+public class ChocolateMonger {
 	
 	static class FastReader {
         BufferedReader br;
@@ -54,77 +56,56 @@ public class InconstantOrdering {
 	public static void main(String[] args) {
 		FastReader fs = new FastReader();
 		int t = fs.nextInt();
-		for(int x = 1; x <= t; x++) {
+		while(t-- > 0) {
 			int n = fs.nextInt();
-			int[] l = new int[n];
-			for(int z = 0; z < n; z++) {
-				l[z] = fs.nextInt();
+			int x = fs.nextInt();
+			long[] a = new long[n];
+			for(int i = 0; i < n; i++) {
+				a[i] = fs.nextLong();
 			}
 			
-			int size = 1;
-			for(int y = 0; y < n; y++) {
-				size = size + l[y];
-			}
+			Arrays.sort(a);
 			
-			System.out.println(size);
-			
-			char[] str = new char[size];
-			str[0] = 'A';
-			char ascii = 65;
-			for(int i = 1, j=0; i < size && j < n-1;j++) {
-				if(l[j] < l[j+1] && j%2 == 0) {
-					int store = l[j];
-					for(int m = l[j]; m >1;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
-					}
-					ascii+=((l[j+1]-store) + 1);
-					System.out.println(ascii);
-					str[i] = ascii;
-					System.out.println("inc");
+			int count = 1;
+			ArrayList<Integer> ans = new ArrayList<Integer>();
+			for(int j = 0; j < n - 1; j++) {
+				if(a[j] == a[j+1]) {
+					count++;
 				}
-				else if(l[j] >= l[j+1] && j%2 != 0) {
-					for(int r = l[j]; r >0;r--) {
-						//even decreasing
-						ascii-=1;
-						str[i] = ascii;
-						i++;
-					}
-					System.out.println("dec");
-				}
-				else if(j%2 == 0) {
-					for(int m = l[j]; m >0;m--) {
-						//odd increasing
-						ascii+=1;
-						str[i] = ascii;
-						i++;
-					}
-					System.out.println("inc");
+				else if(a[j] != a[j+1]) {
+					ans.add(count);
+					count = 1;
 				}
 			}
+			ans.add(count);
 			
 			
+			int total = 0;
+			for(int p = 0; p < ans.size(); p++) {
+				total = total + ans.get(p);
+			}
 			
-			String string = new String(str);
+			int left = total - ans.size();
 			
-			System.out.println("Case #" + x + ": " + string);
+			if(left >= x) {
+				System.out.println(ans.size());
+			}
+			else if(left < x) {
+				int want = x - left;
+				int answer = ans.size() - want;
+				System.out.println(answer);
+			}
+			
 		}
+
 	}
+
 }
 
-//char asii = 65;
-//for(char i = 0; i < 2; i++) {
-//	System.out.println(asii++);
-//}
-
-
 //3
-//2
-//2 3
-//2
-//5 1
-//1
-//2
-
+//2 1
+//1 2
+//4 2
+//1 1 1 1
+//5 3
+//50 50 50 100 100
