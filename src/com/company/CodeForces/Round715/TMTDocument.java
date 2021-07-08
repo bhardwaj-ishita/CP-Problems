@@ -1,4 +1,4 @@
-package com.company.CodeForces;
+package com.company.CodeForces.Round715;
 
 import com.company.Main;
 

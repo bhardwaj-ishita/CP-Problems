@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import com.company.Main.Fastreader;
 
 public class ThiefPolice {
 

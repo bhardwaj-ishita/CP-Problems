@@ -9,11 +9,11 @@ import java.util.StringTokenizer;
 public class Main {
 
 
-    public static class Fastreader {
+    public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
-        public Fastreader() {
+        public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
 
@@ -59,7 +59,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Fastreader fs = new Fastreader();
+        FastReader fs = new FastReader();
         int t = fs.nextInt();
         while (t-- > 0) {
             long a = fs.nextLong();

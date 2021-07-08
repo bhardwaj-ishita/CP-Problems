@@ -1,6 +1,5 @@
 package com.company;
 
-import com.company.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,7 +58,7 @@ public class RedAndBlueBeans {
     }
 
     public static void main(String[] args) {
-        Main.Fastreader fs = new Main.Fastreader();
+        Fastreader fs = new Fastreader();
         int t = fs.nextInt();
         while(t-- > 0) {
             int r = fs.nextInt();
