@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * multiplication of all co-prime numbers of n is also co-prime.
+ *
+ */
 public class Product1ModuloN {
 
     static class FastReader{
@@ -28,57 +32,42 @@ public class Product1ModuloN {
             return st.nextToken();
         }
 
-        int nextInt() {
-            return Integer.parseInt(next());
+        long nextLong() {
+            return Long.parseLong(next());
         }
     }
 
     public static void main(String[] args) {
         FastReader fs = new FastReader();
-        int n = fs.nextInt();
+        long n = fs.nextLong();
 
         //co prime numbers
         //and then modulo n
         //if ans 1 good, else if ans p then remove p
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
+        List<Long> list = new ArrayList<>();
 
-        int i = 1;
+        long i = 1;
         long product = 1;
         while(i < n) {
-            if(gcd(i,n)!=0) {
+            if(gcd(n,i)==1) {
                 list.add(i);
                 product *= i;
+                product %= n;
+                //System.out.println("product: " + product);
             }
             i++;
         }
 
-        if(product%n==1) {
-            System.out.println(list.size());
-            for (Integer integer : list) System.out.print(integer + " ");
+        if(product > 1) {
+            list.remove(product);
         }
-        else {
-            while(product(list)%n!=1) {
-                Integer index = (int)(product(list)%n);
-                list.remove(index);
-            }
-            System.out.println(list.size());
-            for (Integer integer : list) System.out.print(integer + " ");
-        }
+        System.out.println(list.size());
+        for (Long integer : list) System.out.print(integer + " ");
 
     }
 
-    public static int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
-    }
-
-    public static long product(List<Integer> list) {
-        int i = 0;
-        long product = 1;
-        while(i < list.size()) {
-            product *= list.get(i);
-            i++;
-        }
-        return product;
+    public static long gcd(long a, long b) {
+        if(b==0) return a;
+        return gcd(b,a%b);
     }
 }

@@ -1,12 +1,18 @@
-package com.company;
+package com.company.CodeForces.Round717;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * if XOR of the array is ZERO, then it means there will definately 2 elements left who are same as x^x = 0
+ * if not zero, then we'll try to see if we can make the finalXOR term appear more than 2 times in the array.
+ *      if the finalXOR == 5 and we see that there are at least three 5s (5 5 5) then we can make it
+ *      WE JUST NEED AT LEAST 2 ELEMENTS IN THE ARRAY LEFT AND THOSE SHOULD BE EQUAL
+ */
+public class AGAGA_XOOORRR {
 
-public class Main {
     public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -33,26 +39,6 @@ public class Main {
 
         long nextLong() {
             return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
-        }
-        
-        float nextFloat() {
-            return Float.parseFloat(next());
-        }
-
-        String nextLine()
-        {
-            String str = "";
-            try {
-                str = br.readLine();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
         }
     }
 
@@ -84,13 +70,5 @@ public class Main {
             }
         }
     }
+
 }
-
-/*
-4
-8 5
-1 2
-4 4
-3 9
-
- */

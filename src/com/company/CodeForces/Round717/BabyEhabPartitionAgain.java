@@ -1,11 +1,12 @@
-package com.company.CodeForces;
+package com.company.CodeForces.Round717;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class TitForTat {
+public class BabyEhabPartitionAgain {
 
 	static class Fastreader {
         BufferedReader br;
@@ -58,27 +59,38 @@ public class TitForTat {
 
     public static void main(String[] args) {
         Fastreader fs = new Fastreader();
-        int t = fs.nextInt();
-        while(t-- > 0) {
-        	int n = fs.nextInt();
-        	int k = fs.nextInt();
-        	int[] arr = new int[n];
-        	for(int i = 0; i < n; i++) {
-        		arr[i] = fs.nextInt();
-        	}
-        	
-        	for(int j = 0; j < n; j++) {
-        		while(arr[j] != 0 && k != 0) {
-        			arr[j] -= 1;
-        			arr[n-1] += 1;
-        			k--;
-        		}
-        	}
-        	
-        	for(int x: arr) System.out.print(x + " ");
-        	System.out.println();
-        	
-        }
+    	int n = fs.nextInt();
+    	int[] arr = new int[n];
+    	for(int i = 0; i < n; i++) {
+    		arr[i] = fs.nextInt();
+    	}
+    	
+    	Arrays.sort(arr);
+    	
+    	int x = 0;
+    	int y = n - 1;
+    	int sum1 = 0;
+    	int sum2 = 0;
+    	for(; x < n && y >=0 && x < y;x += 2, y -= 2) {
+    		sum1 = sum1 + arr[x];
+    		sum2 = sum2 + arr[y];
+    	}
+    	
+    	int diff = sum1 - sum2;
+    	
+    	if(diff == 0) {
+    		System.out.println(1 + " " + 1);
+    	}
+    	else if(diff != 0) {
+    		System.out.println(0);
+    	}
+    }
+    
+    
+    public static void switchNum(int x, int y, int[] arr) {
+    	int store = arr[x];
+		arr[x] = arr[y];
+		arr[y] = store;
     }
 
 }

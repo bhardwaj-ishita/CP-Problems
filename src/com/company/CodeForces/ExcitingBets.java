@@ -1,18 +1,18 @@
 package com.company.CodeForces;
 
+import com.company.Main;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BabyEhabPartitionAgain {
-
-	static class Fastreader {
+public class ExcitingBets {
+    public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
-        public Fastreader() {
+        public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
 
@@ -39,7 +39,7 @@ public class BabyEhabPartitionAgain {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -58,39 +58,34 @@ public class BabyEhabPartitionAgain {
     }
 
     public static void main(String[] args) {
-        Fastreader fs = new Fastreader();
-    	int n = fs.nextInt();
-    	int[] arr = new int[n];
-    	for(int i = 0; i < n; i++) {
-    		arr[i] = fs.nextInt();
-    	}
-    	
-    	Arrays.sort(arr);
-    	
-    	int x = 0;
-    	int y = n - 1;
-    	int sum1 = 0;
-    	int sum2 = 0;
-    	for(; x < n && y >=0 && x < y;x += 2, y -= 2) {
-    		sum1 = sum1 + arr[x];
-    		sum2 = sum2 + arr[y];
-    	}
-    	
-    	int diff = sum1 - sum2;
-    	
-    	if(diff == 0) {
-    		System.out.println(1 + " " + 1);
-    	}
-    	else if(diff != 0) {
-    		System.out.println(0);
-    	}
-    }
-    
-    
-    public static void switchNum(int x, int y, int[] arr) {
-    	int store = arr[x];
-		arr[x] = arr[y];
-		arr[y] = store;
-    }
+        FastReader fs = new FastReader();
+        int t = fs.nextInt();
+        while (t-- > 0) {
+            long a = fs.nextLong();
+            long b = fs.nextLong();
 
+            if(a == b) {
+                System.out.println(0 + " " + 0);
+            }
+            else if(Math.abs(b-a) == 1) {
+                System.out.println(1 + " " + 0);
+            }
+            else if(a != b) {
+                long gcd = a > b ? a - b : b - a;
+                long i = 0;
+                if(Math.abs(a-b) > a && Math.abs(a-b) > b) {
+                    i = (a < b ? a : b);
+                    gcd = a > b ? a : b;
+                }
+                else {
+                    while(a % gcd != 0){
+                        a += 1;
+                        i++;
+                    }
+                }
+                System.out.println(gcd + " " + i);
+
+            }
+        }
+    }
 }
