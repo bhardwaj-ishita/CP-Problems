@@ -1,18 +1,16 @@
-package com.company.CodeChef;
+package com.company.CodeForces.Round731;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-
-public class Sum2050 {
-	
-	static class Fastreader {
+public class ShortestPathsWithObstacles {
+    public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
-        public Fastreader() {
+        public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
 
@@ -39,7 +37,7 @@ public class Sum2050 {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -56,56 +54,26 @@ public class Sum2050 {
             return str;
         }
     }
-	
-	public static long countDigit(long n)
-    {
-        if (n == 0)
-            return 0;
-        return 1 + countDigit(n / 10);
-    }
 
     public static void main(String[] args) {
-        Fastreader fs = new Fastreader();
+        FastReader fs = new FastReader();
         int t = fs.nextInt();
-        while(t-- > 0){
-        	long n = fs.nextLong();
-        	
-        	long digits = countDigit(n);
-        	
-        	long k = digits - 4;
-        	
-        	long diff = n;
-        	int count = 0;
-        	long store = 0;
-        	
-        	if(digits < 4 && n%2050 != 0) {
-        		System.out.println(-1);
-        	}
-        	else if(digits >= 4 && n%2050 == 0) {
-        		while(k >= 0) {
-        			store = diff;
-            		diff = (long) (store - (2050*(Math.pow(10, k))));
-            		count++;
-            		if(diff < 0) {
-            			diff = store;
-            			k--;
-            			count--;
-            		}
-            		else if(diff == 0) {
-            			break;
-            		}
-            	}
-            	
-            	if(diff == 0) {
-            		System.out.println(count);
-            	}
-            	else
-            		System.out.println(-1);
-        	}
-        	else
-        		System.out.println(-1);
+        while(t-->0) {
+            String space = fs.nextLine();
+            int xai = fs.nextInt();
+            int xaj = fs.nextInt();
+            int xbi = fs.nextInt();
+            int xbj = fs.nextInt();
+            int xfi = fs.nextInt();
+            int xfj = fs.nextInt();
 
+            System.out.println(path(xai,xaj,xbi,xbj,xfi,xfj));
         }
     }
-//kjhk
+
+    public static int path(int xai, int xaj, int xbi, int xbj, int xfi, int xfj) {
+        if(xfi==xai && xfi==xbi && (xfj<xbj && xfj>xaj || xfj>xbj && xfj<xaj)) return (xaj>xbj?xaj-xbj:xbj-xaj) + (xai>xbi?xai-xbi:xbi-xai) + 2;
+        if(xfj==xaj && xfj==xbj && (xfi<xbi && xfi>xai || xfi>xbi && xfi<xai)) return (xaj>xbj?xaj-xbj:xbj-xaj) + (xai>xbi?xai-xbi:xbi-xai) + 2;
+        return (xaj>xbj?xaj-xbj:xbj-xaj) + (xai>xbi?xai-xbi:xbi-xai);
+    }
 }

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.CodeForces.Round731;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-
-public class Main {
+public class PairProgramming {
     public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -40,7 +39,7 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
