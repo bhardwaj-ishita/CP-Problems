@@ -73,40 +73,45 @@ public class PairProgramming {
             for(int i = 0; i < m; i++) {
                 b[i] = fs.nextInt();
             }
-            int[] ans = new int[n + m + 2];
+            int[] ans = new int[n + m];
             if(ans(k,n,m,a,b,ans) == -1) System.out.println(-1);
             else {
                 for(int i: ans) System.out.print(i + " ");
+                System.out.println();
             }
-            System.out.println();
         }
     }
 
     public static int ans(int k, int n, int m, int[] a, int[] b, int[] ans) {
         List<Integer> list = new ArrayList<>();
         int i,j;
-        for(i = 0,j=0; i < n && j<m;) {
-            if(a[i] == 0 && i < n) {
+        for(i = 0,j=0; i < n || j<m;) {
+            if(i<n && a[i] == 0) {
                 list.add(a[i]);
+                //System.out.println("list: " + list);
+                k += 1;
                 i++;
             }
-            else if(a[i] > 0 && a[i] <= k && i < n) {
+            else if(j < m && b[j] == 0) {
+                list.add(b[j]);
+                //System.out.println("list: " + list);
+                k += 1;
+                j++;
+            }
+            else if(i<n && a[i] > 0 && a[i] <= k) {
                 list.add(a[i]);
-                k += a[i];
+                //System.out.println("list: " + list);
                 i++;
             }
-            if(b[j] == 0 && j < m) {
+            else if(j<m && b[j] > 0 && b[j] <= k) {
                 list.add(b[j]);
+                //System.out.println("list: " + list);
                 j++;
             }
-            else if(b[j] > 0 && b[j] < k && j < m) {
-                list.add(b[j]);
-                k += b[j];
-                j++;
-            }
-            if(a[i] > k && b[j] > k && i < n && j < m) {
+            else if((i>=n && b[j] > k )||  (j >= m && a[i] > k ) || (i < n && j < m && b[j] > k && a[i] > k)) {
                 return -1;
             }
+            //System.out.println("K: " + k);
         }
         for(int x = 0; x < list.size(); x++) {
             ans[x] = list.get(x);
@@ -138,4 +143,9 @@ public class PairProgramming {
 8 7 8 0
 0
 
+2 0 0 5
+0 2 0 6 5
+-1
+0 6 0 7 0 8 0 9
+-1
  */
