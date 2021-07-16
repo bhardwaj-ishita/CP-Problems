@@ -1,4 +1,4 @@
-package com.company.CodeForces.Round731;
+package com.company.CodeForces.Round731;//DIV3
 
 import java.io.BufferedReader;
 import java.io.IOException;
