@@ -1,12 +1,12 @@
-package com.company;
+package com.company.CodeForces.HarbourSpace;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
-
-public class Main {
+public class ReverseString {
     public static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -38,7 +38,7 @@ public class Main {
         double nextDouble() {
             return Double.parseDouble(next());
         }
-        
+
         float nextFloat() {
             return Float.parseFloat(next());
         }
@@ -62,6 +62,7 @@ public class Main {
         while (t-- > 0) {
             String s = fs.nextLine();
             String q = fs.nextLine();
+            Stack<Character> stack = new Stack<>();
 
             int i = 0;
             boolean ans = false;
@@ -73,50 +74,33 @@ public class Main {
                 i++;
             }
 
-            if(q.length() > 2*s.length()) System.out.println("NO");
-            else if(!ans) System.out.println("NO");
-            else System.out.println(answer(s,q, i, 0));
+            if(!ans) System.out.println("NO");
+            else System.out.println(answer(s,q,stack, i, 0));
         }
     }
 
-    public static String answer(String s, String q, int i, int j) {
+    public static String answer(String s, String q, Stack<Character> stack, int i, int j) {
         boolean bool = false;
         while(j < q.length() && i > 0) {
             System.out.println("i: " + i + " j: " + j);
             if(i >= s.length()) {
-                if(i > 2 && s.charAt(i-2)!=q.charAt(j)) return "NO";
+                stack.pop();
+                if(!stack.isEmpty()  && stack.peek() != q.charAt(j)) return "NO";
                 bool = true;
                 i-=2;
             }
-
-            if(bool && s.charAt(i) != q.charAt(j)) return "NO";
-            else if(!bool && s.charAt(i) != q.charAt(j)){
+            if(!bool && s.charAt(i) == q.charAt(j)) stack.push(s.charAt(i));
+            else if(bool && s.charAt(i) != q.charAt(j)) return "NO";
+            else if(bool && s.charAt(i) == q.charAt(j)) stack.push(s.charAt(i));
+            else {
                 bool = true;
                 i--;
                 j--;
             }
-
             if(bool) i--;
             else i++;
-
             j++;
         }
         return "YES";
     }
-
 }
-/*
-6
-abcdef
-cdedcb
-aaa
-aaaaa
-aab
-baaa
-ab
-b
-abcdef
-abcdef
-ba
-baa
- */
